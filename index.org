@@ -1,0 +1,25 @@
+* Generate my files listing
+
+#+begin_src python
+import os
+#+end_src
+
+#+begin_src python :results html :exports results
+import os
+import urllib.parse
+
+l = []
+url = 'https://github.com/baileywickham/files/raw/master/'
+for file in os.listdir('.'):
+    u = url + urllib.parse.quote(file)
+    l.append(f'<a href={u}>{u}</a><br')
+
+return '\n'.join(l)
+#+end_src
+
+#+RESULTS:
+: https://github.com/baileywickham/files/raw/master/Your%20Birkenstock%20Return.pdf
+: https://github.com/baileywickham/files/raw/master/.git
+: https://github.com/baileywickham/files/raw/master/gen.py
+: https://github.com/baileywickham/files/raw/master/generate.html
+: https://github.com/baileywickham/files/raw/master/generate.org
