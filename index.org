@@ -1,5 +1,7 @@
 #+setupfile: comfy_inline.theme
 * Generate my files listing
+I can't get the color for code blocks working here and its driving me crazy.
+
 
 #+begin_src python :results html :exports both
 import os
@@ -7,7 +9,7 @@ import urllib.parse
 
 l = []
 url = 'https://github.com/baileywickham/files/raw/master/'
-for file in os.listdir('.'):
+for file in filter(lambda n: not n in [".git", 'CNAME', 'comfy_inline.theme'], os.listdir('.')):
     u = url + urllib.parse.quote(file)
     l.append(f'<a href={u}>{u}</a><br>')
 
@@ -16,9 +18,7 @@ return '\n'.join(l)
 
 #+RESULTS:
 #+BEGIN_EXPORT html
-<a href=https://github.com/baileywickham/files/raw/master/.git>https://github.com/baileywickham/files/raw/master/.git</a><br>
 <a href=https://github.com/baileywickham/files/raw/master/index.org>https://github.com/baileywickham/files/raw/master/index.org</a><br>
-<a href=https://github.com/baileywickham/files/raw/master/CNAME>https://github.com/baileywickham/files/raw/master/CNAME</a><br>
 <a href=https://github.com/baileywickham/files/raw/master/Rental-Application-4.pdf>https://github.com/baileywickham/files/raw/master/Rental-Application-4.pdf</a><br>
 <a href=https://github.com/baileywickham/files/raw/master/index.html>https://github.com/baileywickham/files/raw/master/index.html</a><br>
 #+END_EXPORT
