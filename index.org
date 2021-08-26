@@ -1,3 +1,4 @@
+#+setupfile: comfy_inline.theme
 * Generate my files listing
 
 #+begin_src python :results html :exports both
@@ -24,7 +25,7 @@ return '\n'.join(l)
 
 
 #+begin_src bash :export both
-filename="" 
+filename=""
 
 git filter-branch --force --index-filter \
   "git rm --cached --ignore-unmatch ${filename}" \
