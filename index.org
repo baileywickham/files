@@ -2,6 +2,7 @@
 * Generate my files listing
 I can't get the color for code blocks working here and its driving me crazy.
 
+To export use ~C-c C-c~ in the block below to generate the file listing. Then use ~C-c C-e o~ to export html.
 
 #+begin_src python :results html :exports both
 import os
