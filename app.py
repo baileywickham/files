@@ -1,4 +1,8 @@
+import os
+import urllib.parse
 
+def basicTemplate(var):
+    html = f'''
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,8 +16,7 @@
     <title>Video</title>
   </head>
   <body>
-    <a href=https://github.com/baileywickham/files/raw/master/6-8-egg.ps>https://github.com/baileywickham/files/raw/master/6-8-egg.ps</a><br>
-<a href=https://github.com/baileywickham/files/raw/master/index.html>https://github.com/baileywickham/files/raw/master/index.html</a><br>
+    {var}
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -27,4 +30,18 @@
     -->
   </body>
 </html>
-    
+    '''
+    return html
+
+def generateUl():
+    ignore = ["app.py", ".git", 'CNAME', 'erase-history']
+    l = []
+    url = 'https://github.com/baileywickham/files/raw/master/'
+    for file in filter(lambda n: not n in ignore, os.listdir('.')):
+        u = url + urllib.parse.quote(file)
+        l.append(f'<a href={u}>{u}</a><br>')
+
+    return '\n'.join(l)
+
+with open('index.html', 'w') as f:
+    f.write(basicTemplate(generateUl()))
